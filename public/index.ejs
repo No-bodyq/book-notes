@@ -64,10 +64,28 @@
       </div>
     </main>
     <script>
-      let parag;
-      const descriptions = document.getElementsByName(".paragraph").textContent;
+      let paragraphs = [];
+      const descriptions = document.querySelectorAll(".paragraph");
       descriptions.forEach((desc) => {
-        alert(desc);
+        paragraphs.push(desc.textContent);
+      });
+      let id = 1;
+      function shortenText(list) {
+        let slicedParagraphs = [];
+        list.forEach((paragraph) => {
+          let slice = paragraph.slice(0, 200);
+          slicedParagraphs.push(
+            `${slice} ... <a href="/book/${id}" class="read-more">(Read more)</a>`
+          );
+          id++;
+        });
+        return slicedParagraphs;
+      }
+      paragraphs = shortenText(paragraphs);
+      id = 0;
+      descriptions.forEach((desc) => {
+        desc.innerHTML = paragraphs[id];
+        id++;
       });
     </script>
   </body>

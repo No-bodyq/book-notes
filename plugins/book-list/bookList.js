@@ -2,7 +2,6 @@
 
 const fp = require("fastify-plugin");
 const { DB_PWD } = process.env;
-let books = [];
 
 module.exports = fp(async function (app, opts) {
   app.register(require("@fastify/postgres"), {
@@ -10,6 +9,7 @@ module.exports = fp(async function (app, opts) {
   });
 
   app.decorate("getBooks", async function () {
+    let books = [];
     const client = await app.pg.connect();
 
     try {
