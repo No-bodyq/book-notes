@@ -1,7 +1,11 @@
 "use strict";
 
-module.exports = async function (fastify, opts) {
-  fastify.get("/:id", async function (request, reply) {
-    return "this is an example";
+module.exports = async function (app, opts) {
+  app.get("/:id", async function (request, reply) {
+    const { id } = request.params;
+    const book = await app.selectBook(id);
+    return reply.view("book.ejs", {
+      book: book,
+    });
   });
 };

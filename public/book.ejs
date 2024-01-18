@@ -38,55 +38,19 @@
     </nav>
     <main>
       <div class="container">
-        <div class="book-notes"><h1>Book Notes</h1></div>
-        <div class="books">
-          <%books.forEach((book) => {%>
-          <div class="book" id="book<%= book.id %>">
-            <div class="top">
-              <a href="/book/<%= book.id %>"
-                ><img class="book-image" src="<%= book.image %>"
-              /></a>
-              <div class="title">
-                <a href="/book/<%= book.id %>"><h3><%= book.title %></h3></a>
-                <h4>by <%= book.author %></h4>
-                <p>ISBN: <%= book.isbn_no %></p>
-                <p>★★★★★ <%= book.rating.toFixed(1) %></p>
-                <p><%= book.entry_date %></p>
-              </div>
-            </div>
-            <div class="description">
-              <p class="paragraph"><%= book.description %></p>
-              <hr />
-            </div>
-          </div>
-          <% }); %>
+        <div class="book-notes">
+          <h1><%= book.title %></h1>
+          <h4>by <%= book.author %></h4>
+          <img
+            style="margin-top: 20px"
+            class="book-image"
+            src="<%= book.image %>"
+          />
+        </div>
+        <div class="book-info">
+          <p><%= book.description %></p>
         </div>
       </div>
     </main>
-    <script>
-      let paragraphs = [];
-      const descriptions = document.querySelectorAll(".paragraph");
-      descriptions.forEach((desc) => {
-        paragraphs.push(desc.textContent);
-      });
-      let id = 1;
-      function shortenText(list) {
-        let slicedParagraphs = [];
-        list.forEach((paragraph) => {
-          let slice = paragraph.slice(0, 200);
-          slicedParagraphs.push(
-            `${slice} ... <a href="/book/${id}" class="read-more">(Read more)</a>`
-          );
-          id++;
-        });
-        return slicedParagraphs;
-      }
-      paragraphs = shortenText(paragraphs);
-      id = 0;
-      descriptions.forEach((desc) => {
-        desc.innerHTML = paragraphs[id];
-        id++;
-      });
-    </script>
   </body>
 </html>
