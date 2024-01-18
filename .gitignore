@@ -1,6 +1,5 @@
 # Logs
 logs
-.env
 *.log
 npm-debug.log*
 
@@ -50,7 +49,6 @@ profile-*
 .idea
 
 # vscode
-.vscode
 *code-workspace
 
 # clinic
@@ -59,3 +57,7 @@ profile*
 *flamegraph*
 
 node_modules
+temp_auto_push.bat
+temp_interactive_push.bat
+branch_structure.json
+config.bat
